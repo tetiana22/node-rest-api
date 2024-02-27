@@ -30,18 +30,15 @@ async function removeContact(contactId) {
 
   return index;
 }
-
-async function addContact(name, email, phone) {
+async function addContact(contact) {
   const contacts = await listContacts();
   const newContact = {
     id: crypto.randomUUID(),
-    name,
-    email,
-    phone,
+    ...contact,
   };
   const newContacts = [...contacts, newContact];
   await fs.writeFile(contactsPath, JSON.stringify(newContacts));
-  return newContact;
+  return newContacts;
 }
 
 async function updateContacts(id, contact_data) {
