@@ -1,6 +1,6 @@
 import app from "./app.js";
 import mongoose from "mongoose";
-
+import { DB_HOST } from "./.env.js";
 mongoose.set("strictQuery", true);
 
 mongoose
