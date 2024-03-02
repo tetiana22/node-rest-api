@@ -12,8 +12,8 @@ export const getAllContacts = async (req, res, next) => {
 
 export const getOneContact = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const result = await Contact.findOne({ _id: id });
+    const { contactId } = req.params;
+    const result = await Contact.findOne(contactId);
     if (!result) {
       throw HttpError(404, "Not found");
     }
@@ -25,8 +25,8 @@ export const getOneContact = async (req, res, next) => {
 
 export const deleteContact = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const result = await Contact.findByIdAndDelete(id);
+    const { contactId } = req.params;
+    const result = await Contact.findByIdAndDelete(contactId);
     if (!result) {
       throw HttpError(404, "Not found");
     }
@@ -38,7 +38,6 @@ export const deleteContact = async (req, res, next) => {
 
 export const createContact = async (req, res, next) => {
   try {
-    const { date } = rqb.body;
     const result = await Contact.create(req.body);
     res.status(201).json(result);
   } catch (error) {
@@ -48,8 +47,8 @@ export const createContact = async (req, res, next) => {
 
 export const updateContact = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const result = await Contact.findByIdAndUpdate(id, req.body, { new: true });
+    const { contactId } = req.params;
+    const result = await Contact.findByIdAndUpdate(contactId, req.body);
     if (!result) {
       throw HttpError(404, "Not found");
     }
@@ -61,8 +60,8 @@ export const updateContact = async (req, res, next) => {
 
 export const updateFavorite = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const result = await Contact.findByIdAndUpdate(id, req.body, { new: true });
+    const { contactId } = req.params;
+    const result = await Contact.findByIdAndUpdate(contactId, req.body);
     if (!result) {
       throw HttpError(404, "Not found");
     }
